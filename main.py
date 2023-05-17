@@ -148,7 +148,7 @@ def convert_index_to_char(string, index):
     return char
 
 
-def test_main():
+def main():
     '''
     Simple method that demonstrates program functionality.
     '''
@@ -177,17 +177,8 @@ def test_main():
     print(f'Decrypted Ciphertext: {DECRYPTED_TEXT}\n')
 
 
-def main():
-    '''
-    Main method.
-    '''
-    # TODO: Add args to allow the user to output key to a file, load keys, load text files, etc.
-    pass
-
-
 if __name__ == '__main__':
     try:
-        test_main()
-        # main()
+        main()
     except KeyboardInterrupt:
         exit()

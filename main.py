@@ -10,22 +10,15 @@ import random
 def generate_key(natural_alphabet):
     '''
     Generate an alphabet permutation to serve as a key.
-    Returns a 26 character array.
-    '''
-    # Create an empty array to hold the generated key:
-    permutated_alphabet = ''    
-    '''
-    Pick a random character from the CHARS array. If the random character is not 
-    in the CHARS_OUT array, add it to the CHARS_OUT array. Loop until the CHARS_OUT 
-    array length is equal to 26.
-    '''
-    while len(permutated_alphabet) < 26:
-        char = random.choice(natural_alphabet)
-        if not char in permutated_alphabet:
-            permutated_alphabet += char
 
-    # Return the generated key array:
-    return permutated_alphabet
+    Args:
+        natural_alphabet (str): An uppercase string of the natrual alphabet.
+
+    Returns:
+        str: A 26 character string key.
+    '''
+    # Concatenate a string with samples taken from the natural alphabet until reaching the length of the natural alphabet.
+    return ''.join(random.sample(natural_alphabet, len(natural_alphabet)))
 
 
 def encrypt(natural_alphabet, plaintext, key):
@@ -98,8 +91,7 @@ def clean_plaintext(natural_alphabet, plaintext):
     # Declare an empty array to hold clean plaintext:
     clean_plaintext = []
 
-    # Loop through each character in PLAINTEXT, adding it
-    # to clean_text if it is valid:
+    # Loop through each character in PLAINTEXT, adding it to clean_text if it is valid:
     for char in PLAINTEXT:
         if not char in natural_alphabet:
             continue

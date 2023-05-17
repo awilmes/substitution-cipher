@@ -139,19 +139,24 @@ def test_main():
     '''
     Test method that verifies program functionality.
     '''
+    print('\nSIMPLE SUBSTITUTION CIPHER\nAndrew Wilmes 2023\n')
+
     # Generate a key for encrypting/decrypting:
     KEY = generate_key()
     print(f'Natural Alphabet   : {CHARS}')
     print(f'Permutated Alphabet: {KEY}\n')
 
-    PLAINTEXT = "Oklahoma State Institute of Technology"
-    print(f'Plaintext : {PLAINTEXT}')
+    # Get plaintext from the user
+    PLAINTEXT = input("Enter plaintext: ")
+    print(f'\nPlaintext : {PLAINTEXT}')
 
+    # Encrypt the plaintext
     CIPHERTEXT = encrypt(PLAINTEXT, KEY)
     print(f'Ciphertext: {CIPHERTEXT}\n')
 
+    # Decrypt the ciphertext
     DECRYPTED_TEXT = decrypt(CIPHERTEXT, KEY)
-    print(f'Decrypted Ciphertext: {DECRYPTED_TEXT}')
+    print(f'Decrypted Ciphertext: {DECRYPTED_TEXT}\n')
 
 
 def main():

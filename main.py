@@ -8,8 +8,7 @@ import random
 
 
 # Declare a constant array of the natural alphabet:
-CHARS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
 def generate_key():

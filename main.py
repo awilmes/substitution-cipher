@@ -7,53 +7,48 @@ Desc: Substitution Cipher
 import random
 
 
-# Declare a constant array of the natural alphabet:
-CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-
-def generate_key():
+def generate_key(natural_alphabet):
     '''
     Generate an alphabet permutation to serve as a key.
     Returns a 26 character array.
     '''
     # Create an empty array to hold the generated key:
-    permutation_array = []    
+    permutated_alphabet = ''    
     '''
     Pick a random character from the CHARS array. If the random character is not 
     in the CHARS_OUT array, add it to the CHARS_OUT array. Loop until the CHARS_OUT 
     array length is equal to 26.
     '''
-    while len(permutation_array) < 26:
-        char = random.choice(CHARS)
-        if not char in permutation_array:
-            permutation_array.append(char)
+    while len(permutated_alphabet) < 26:
+        char = random.choice(natural_alphabet)
+        if not char in permutated_alphabet:
+            permutated_alphabet += char
 
     # Return the generated key array:
-    return permutation_array
+    return permutated_alphabet
 
 
-def encrypt(plaintext, key):
+def encrypt(natural_alphabet, plaintext, key):
     '''
     Encryption method. Takes plaintext and a key as arguments. Converts each plaintext
     character to an index number, and matches the index number against the key.
     Returns ciphertext string.
     '''
-    KEY = key
-    PLAINTEXT = clean_plaintext(plaintext) # Clean the plaintext on declaration.
+    PLAINTEXT = clean_plaintext(natural_alphabet, plaintext) # Clean the plaintext on declaration.
 
     # Create an empty array to hold index numbers of plaintext characters:
     natural_index_nums = []
 
     # Convert plaintext characters to index numbers based on the natural alphabet:
     for char in PLAINTEXT:
-        natural_index_nums.append(get_character_index(CHARS, char))
+        natural_index_nums.append(get_character_index(natural_alphabet, char))
 
     # Create an empty array to hold ciphertext characters as they are discovered:
     ciphertext_array = []
 
     # Convert index numbers to characters based on the permutated alphabet:
     for index in natural_index_nums:
-        ciphertext_array.append(convert_index_to_character(KEY, index))
+        ciphertext_array.append(convert_index_to_character(key, index))
 
     # Convert the ciphertext array to a string and return it:
     ciphertext_string = ""
@@ -63,27 +58,24 @@ def encrypt(plaintext, key):
     return ciphertext_string
 
 
-def decrypt(ciphertext, key):
+def decrypt(natural_alphabet, ciphertext, key):
     '''
     Decryption method. Takes ciphertext and a key as arguments. Works the same as the
     encryption method but in reverse. Returns a string of decrypted ciphertext.
     '''
-    CIPHERTEXT = ciphertext
-    KEY = key
-
     # Create an empty array to store index numbers:
     permutated_index_nums = []
 
     # Convert the ciphertext characters to index numbers:
-    for char in CIPHERTEXT:
-        permutated_index_nums.append(get_character_index(KEY, char))
+    for char in ciphertext:
+        permutated_index_nums.append(get_character_index(key, char))
 
     # Create an empty array to hold characters as they are decrypted:
     plaintext_array = []
 
     # Convert the index array to natural characters:
     for index in permutated_index_nums:
-        plaintext_array.append(convert_index_to_character(CHARS, index))
+        plaintext_array.append(convert_index_to_character(natural_alphabet, index))
 
     # Convert the plaintext array back to a string:
     plaintext_string = ""
@@ -94,7 +86,7 @@ def decrypt(ciphertext, key):
 
 
 
-def clean_plaintext(plaintext):
+def clean_plaintext(natural_alphabet, plaintext):
     '''
     Cleans plaintext by converting to uppercase, removing
     whitespace, and removing special characters. Returns
@@ -109,7 +101,7 @@ def clean_plaintext(plaintext):
     # Loop through each character in PLAINTEXT, adding it
     # to clean_text if it is valid:
     for char in PLAINTEXT:
-        if not char in CHARS:
+        if not char in natural_alphabet:
             continue
         else:
             clean_plaintext.append(char)
@@ -140,30 +132,26 @@ def test_main():
     '''
     print('\nSIMPLE SUBSTITUTION CIPHER\nAndrew Wilmes 2023\n')
 
+    # Declare a string constant of the natural alphabet:
+    natural_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
     # Generate a key for encrypting/decrypting:
-    KEY = generate_key()
+    key = generate_key(natural_alphabet)
 
-    # Generate strings for display purposes
-    natural_alphabet = ""
-    for char in CHARS:
-        natural_alphabet += char
-
-    permutated_alphabet = ""
-    for char in KEY:
-        permutated_alphabet += char
+    # Display natural and permutated alphabets:
     print(f'Natural Alphabet   : {natural_alphabet}')
-    print(f'Permutated Alphabet: {permutated_alphabet}\n')
+    print(f'Permutated Alphabet: {key}\n')
 
     # Get plaintext from the user
     PLAINTEXT = input("Enter plaintext: ")
     print(f'\nPlaintext : {PLAINTEXT}')
 
     # Encrypt the plaintext
-    CIPHERTEXT = encrypt(PLAINTEXT, KEY)
+    CIPHERTEXT = encrypt(natural_alphabet, PLAINTEXT, key)
     print(f'Ciphertext: {CIPHERTEXT}\n')
 
     # Decrypt the ciphertext
-    DECRYPTED_TEXT = decrypt(CIPHERTEXT, KEY)
+    DECRYPTED_TEXT = decrypt(natural_alphabet, CIPHERTEXT, key)
     print(f'Decrypted Ciphertext: {DECRYPTED_TEXT}\n')
 
 

@@ -25,7 +25,14 @@ def encrypt(natural_alphabet, plaintext, key):
     '''
     Encryption method. Takes plaintext and a key as arguments. Converts each plaintext
     character to an index number, and matches the index number against the key.
-    Returns ciphertext string.
+
+    Args:
+        natural_alphabet (str): An uppercase string of the natrual alphabet.
+        plaintext (str): User input to be cleaned.
+        key (str): An uppercase string of a permutated alphabet.
+
+    Returns:
+        str: A string of ciphertext.
     '''
     PLAINTEXT = clean_plaintext(natural_alphabet, plaintext) # Clean the plaintext on declaration.
 
@@ -39,22 +46,27 @@ def encrypt(natural_alphabet, plaintext, key):
     # Create an empty array to hold ciphertext characters as they are discovered:
     ciphertext_array = []
 
-    # Convert index numbers to characters based on the permutated alphabet:
+    # Convert index numbers to characters based on the permutated alphabet and 
+    # store in an array:
     for index in natural_index_nums:
         ciphertext_array.append(convert_index_to_character(key, index))
 
-    # Convert the ciphertext array to a string and return it:
-    ciphertext_string = ""
-    for char in ciphertext_array:
-        ciphertext_string += char
-    
-    return ciphertext_string
+    # Return a string version of the ciphertext array:    
+    return ''.join(ciphertext_array)
 
 
 def decrypt(natural_alphabet, ciphertext, key):
     '''
     Decryption method. Takes ciphertext and a key as arguments. Works the same as the
-    encryption method but in reverse. Returns a string of decrypted ciphertext.
+    encryption method but in reverse. 
+    
+    Args:
+        natural_alphabet (str): An uppercase string of the natrual alphabet.
+        ciphertext (str): A string of ciphertext to be decrypted.
+        key (str): An uppercase string of a permutated alphabet.
+        
+    Returns:
+        str: A string of decrypted ciphertext.
     '''
     # Create an empty array to store index numbers:
     permutated_index_nums = []
@@ -66,40 +78,44 @@ def decrypt(natural_alphabet, ciphertext, key):
     # Create an empty array to hold characters as they are decrypted:
     plaintext_array = []
 
-    # Convert the index array to natural characters:
+    # Convert the index array to natural characters and store in an array:
     for index in permutated_index_nums:
         plaintext_array.append(convert_index_to_character(natural_alphabet, index))
 
-    # Convert the plaintext array back to a string:
-    plaintext_string = ""
-    for char in plaintext_array:
-        plaintext_string += char
-
-    return plaintext_string
+    # Return a string version of the plaintext array:
+    return ''.join(plaintext_array)
 
 
 
 def clean_plaintext(natural_alphabet, plaintext):
     '''
-    Cleans plaintext by converting to uppercase, removing
-    whitespace, and removing special characters. Returns
-    an array.
+    Cleans plaintext by converting to uppercase, removing whitespace, and 
+    removing special characters. Ignores any character not in the natural
+    alphabet.
+
+    Args:
+        natural_alphabet (str): An uppercase string of the natrual alphabet.
+        plaintext (str): User input to be cleaned.
+    
+    Returns:
+         str: A string of cleaned plaintext.
     '''
     # Convert the text to uppercase:
-    PLAINTEXT = plaintext.upper()
+    upper_plaintext = plaintext.upper()
 
-    # Declare an empty array to hold clean plaintext:
-    clean_plaintext = []
+    # Declare an empty array to hold valid characters:
+    valid_chars = []
 
-    # Loop through each character in PLAINTEXT, adding it to clean_text if it is valid:
-    for char in PLAINTEXT:
+    # Loop through each character in PLAINTEXT, adding it to valid_chars found
+    # in natural_alphabet:
+    for char in upper_plaintext:
         if not char in natural_alphabet:
             continue
         else:
-            clean_plaintext.append(char)
+            valid_chars.append(char)
 
     # Return the cleaned plaintext:
-    return clean_plaintext
+    return ''.join(valid_chars)
 
 
 def get_character_index(array, char):
@@ -135,7 +151,7 @@ def test_main():
     print(f'Permutated Alphabet: {key}\n')
 
     # Get plaintext from the user
-    PLAINTEXT = input("Enter plaintext: ")
+    PLAINTEXT = input('Enter plaintext: ')
     print(f'\nPlaintext : {PLAINTEXT}')
 
     # Encrypt the plaintext
@@ -155,7 +171,7 @@ def main():
     pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     try:
         test_main()
         # main()

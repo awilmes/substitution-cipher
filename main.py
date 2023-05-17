@@ -143,8 +143,17 @@ def test_main():
 
     # Generate a key for encrypting/decrypting:
     KEY = generate_key()
-    print(f'Natural Alphabet   : {CHARS}')
-    print(f'Permutated Alphabet: {KEY}\n')
+
+    # Generate strings for display purposes
+    natural_alphabet = ""
+    for char in CHARS:
+        natural_alphabet += char
+
+    permutated_alphabet = ""
+    for char in KEY:
+        permutated_alphabet += char
+    print(f'Natural Alphabet   : {natural_alphabet}')
+    print(f'Permutated Alphabet: {permutated_alphabet}\n')
 
     # Get plaintext from the user
     PLAINTEXT = input("Enter plaintext: ")

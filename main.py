@@ -41,7 +41,7 @@ def encrypt(natural_alphabet, plaintext, key):
 
     # Convert plaintext characters to index numbers based on the natural alphabet:
     for char in PLAINTEXT:
-        natural_index_nums.append(get_character_index(natural_alphabet, char))
+        natural_index_nums.append(get_char_index(natural_alphabet, char))
 
     # Create an empty array to hold ciphertext characters as they are discovered:
     ciphertext_array = []
@@ -49,7 +49,7 @@ def encrypt(natural_alphabet, plaintext, key):
     # Convert index numbers to characters based on the permutated alphabet and 
     # store in an array:
     for index in natural_index_nums:
-        ciphertext_array.append(convert_index_to_character(key, index))
+        ciphertext_array.append(convert_index_to_char(key, index))
 
     # Return a string version of the ciphertext array:    
     return ''.join(ciphertext_array)
@@ -73,14 +73,14 @@ def decrypt(natural_alphabet, ciphertext, key):
 
     # Convert the ciphertext characters to index numbers:
     for char in ciphertext:
-        permutated_index_nums.append(get_character_index(key, char))
+        permutated_index_nums.append(get_char_index(key, char))
 
     # Create an empty array to hold characters as they are decrypted:
     plaintext_array = []
 
     # Convert the index array to natural characters and store in an array:
     for index in permutated_index_nums:
-        plaintext_array.append(convert_index_to_character(natural_alphabet, index))
+        plaintext_array.append(convert_index_to_char(natural_alphabet, index))
 
     # Return a string version of the plaintext array:
     return ''.join(plaintext_array)
@@ -118,25 +118,39 @@ def clean_plaintext(natural_alphabet, plaintext):
     return ''.join(valid_chars)
 
 
-def get_character_index(array, char):
+def get_char_index(string, char):
     '''
-    Returns the index of a character in a given array.
+    Gets the index of a character in a given string.
+
+    Args:
+        string (str): A string containing an alphabet or key.
+        char (str): The character to return the index value of.
+    
+    Returns:
+        int: An integer of the character's index value.
     '''
-    index = array.index(char)
+    index = string.index(char)
     return index
 
 
-def convert_index_to_character(array, index):
+def convert_index_to_char(string, index):
     '''
-    Returns the ciphertext character of a given index.
+    Gets the character of a provided index value from a given string.
+
+    Args:
+        string (str): A string of the alphabet or key being searched.
+        index (int): The index value of the character being matched.
+
+    Returns:
+        str: The string character that matches the index value.
     '''
-    cipher_char = array[index]
-    return cipher_char
+    char = string[index]
+    return char
 
 
 def test_main():
     '''
-    Test method that verifies program functionality.
+    Simple method that demonstrates program functionality.
     '''
     print('\nSIMPLE SUBSTITUTION CIPHER\nAndrew Wilmes 2023\n')
 

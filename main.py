@@ -158,6 +158,7 @@ def main():
     '''
     Main method.
     '''
+    # TODO: Add args to allow the user to output key to a file, load keys, load text files, etc.
     pass
 
 

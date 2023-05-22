@@ -152,7 +152,8 @@ def main():
     '''
     Simple method that demonstrates program functionality.
     '''
-    print('\nSIMPLE SUBSTITUTION CIPHER\nAndrew Wilmes 2023\n')
+    print('\nSIMPLE SUBSTITUTION CIPHER\nITD-3523 Introduction to Applied Cryptography \
+          \nAndrew Wilmes 2023\n')
 
     # Declare a string constant of the natural alphabet:
     natural_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
